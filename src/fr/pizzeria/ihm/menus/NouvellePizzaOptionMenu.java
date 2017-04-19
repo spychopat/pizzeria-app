@@ -2,17 +2,19 @@ package fr.pizzeria.ihm.menus;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.Stockage;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.model.Pizza;
 /**
- * Permet à l'utilisateur de saisir une nouvelle pizza
- * elle est directement ajoutée à la liste des pizzas
+ * Permet ï¿½ l'utilisateur de saisir une nouvelle pizza
+ * elle est directement ajoutï¿½e ï¿½ la liste des pizzas
  */
 public class NouvellePizzaOptionMenu extends OptionMenu {
-
-	public NouvellePizzaOptionMenu() {
+private Stockage stockage;
+	public NouvellePizzaOptionMenu( Stockage stockage) {
 		super("Ajouter une nouvelle pizza");
+		this.stockage = stockage;
 	}
 
 	@Override
@@ -21,18 +23,18 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 		Scanner clavier = new Scanner(System.in);
 		
 		String saisieCode, saisieNom;
-		float saisiePrix;
+		Double saisiePrix;
 		System.out.println("Veuillez saisir le code Pizza :");
 		saisieCode = clavier.next();
 		System.out.println("Veuillez saisir le nom de la Pizza :");
 		saisieNom = clavier.next();
 		System.out.println("Veuillez saisir le prix de la pizza :");
-		saisiePrix = clavier.nextFloat();
+		saisiePrix = clavier.nextDouble();
 		
 		Pizza newPizza = new Pizza(saisieCode,saisieNom,saisiePrix);
 		
 		try {
-			Pizza.stockage.saveNewPizza(newPizza);
+			this.stockage.saveNewPizza(newPizza);
 		} catch (SavePizzaException e) {
 			e.printStackTrace();
 		}

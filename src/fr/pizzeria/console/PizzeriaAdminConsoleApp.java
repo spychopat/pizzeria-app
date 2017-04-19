@@ -3,6 +3,10 @@ package fr.pizzeria.console;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import fr.pizzeria.dao.DaoFactory;
+import fr.pizzeria.dao.DaoFichierFactory;
+import fr.pizzeria.dao.DaoMemoireFactory;
+import fr.pizzeria.dao.PizzaDaoImplFichier;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.ihm.Menu;
 import fr.pizzeria.model.Pizza;
@@ -14,17 +18,20 @@ public class PizzeriaAdminConsoleApp {
 	
 	public static void main(String[] args) {
 		
-		Menu menu = new Menu();
 		
-		try {
-			Pizza.stockage.saveNewPizza(new Pizza("PEP","Peperoni",10.47f));
-			Pizza.stockage.saveNewPizza(new Pizza("ROY","Royale",12.50f));
-			Pizza.stockage.saveNewPizza(new Pizza("4FR","4 Fromages",9.10f));
-			Pizza.stockage.saveNewPizza(new Pizza("YOP","Yopiti",18.69f));
-			Pizza.stockage.saveNewPizza(new Pizza("GIG","Gigapizz",99.99f));
-		} catch (SavePizzaException e) {
-			e.printStackTrace();
-		}
+		//DaoFactory memFact = new DaoMemoireFactory();
+		DaoFactory memFact = new DaoFichierFactory();
+		
+		
+		
+		Menu menu = new Menu(memFact.getPizzaDao());
+		
+//		memFact.getPizzaDao().saveNewPizza(new Pizza("PEP","Peperoni",10.47));
+//		memFact.getPizzaDao().saveNewPizza(new Pizza("ROY","Royale",12.50));
+//		memFact.getPizzaDao().saveNewPizza(new Pizza("4FR","4 Fromages",9.10));
+//		memFact.getPizzaDao().saveNewPizza(new Pizza("YOP","Yopiti",18.69));
+//		memFact.getPizzaDao().saveNewPizza(new Pizza("GIG","Gigapizz",99.99));
+	
 		
 		
 	
@@ -52,7 +59,7 @@ public class PizzeriaAdminConsoleApp {
 //		System.out.println("\n***** Pizzeria Administration *****\n"
 //				+ "1. Lister les pizzas\n"
 //				+ "2. Ajouter une nouvelle pizza\n"
-//				+ "3. Mettre à jour une pizza\n"
+//				+ "3. Mettre ï¿½ jour une pizza\n"
 //				+ "4. Supprimer une pizza\n"
 //				+ "99. Sortir");
 //		
@@ -106,8 +113,8 @@ public class PizzeriaAdminConsoleApp {
 //	
 //	
 //	/**
-//	 * Permet à l'utilisateur de saisir une nouvelle pizza
-//	 * elle est directement ajoutée à la liste des pizzas
+//	 * Permet ï¿½ l'utilisateur de saisir une nouvelle pizza
+//	 * elle est directement ajoutï¿½e ï¿½ la liste des pizzas
 //	 */
 //	private static void ajouterPizza() {
 //		String saisieCode, saisieNom;
@@ -125,13 +132,13 @@ public class PizzeriaAdminConsoleApp {
 //	
 //	
 //	/**
-//	 * Affiche toutes les pizzas à l'écran
-//	 * L'utilisateur doit appuyer sur Entrée pour continuer
+//	 * Affiche toutes les pizzas ï¿½ l'ï¿½cran
+//	 * L'utilisateur doit appuyer sur Entrï¿½e pour continuer
 //	 */
 //	private static void listerPizza() {
 //		int i = 0;
 //		for (Pizza pizza: Pizza.pizzas) {
-//		    System.out.println(i+". " +pizza.getCodePizza() + " - " + pizza.getNomPizza() +" - "+ pizza.getPrix() +"€");
+//		    System.out.println(i+". " +pizza.getCodePizza() + " - " + pizza.getNomPizza() +" - "+ pizza.getPrix() +"ï¿½");
 //		    i++;
 //		}
 //	}

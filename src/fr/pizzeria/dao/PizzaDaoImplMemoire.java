@@ -8,7 +8,7 @@ import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
-public class StockageArrayList implements Stockage{
+public class PizzaDaoImplMemoire implements Stockage{
 
 	
 	private static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
@@ -23,7 +23,7 @@ public class StockageArrayList implements Stockage{
 	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException {
 		boolean result = pizzas.add(pizza);
 		if(!result)
-			throw new SavePizzaException("Code pizza déjà existant.");
+			throw new SavePizzaException("Code pizza dï¿½jï¿½ existant.");
 		return result;
 	}
 

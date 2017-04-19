@@ -2,6 +2,7 @@ package fr.pizzeria.ihm;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.Stockage;
 import fr.pizzeria.ihm.menus.ListerPizzasOptionMenu;
 import fr.pizzeria.ihm.menus.ModifierPizzaOptionMenu;
 import fr.pizzeria.ihm.menus.NouvellePizzaOptionMenu;
@@ -21,12 +22,12 @@ public class Menu {
 	
 	
 	
-	public Menu() {
+	public Menu(Stockage stockage) {
 		super();
-		listeurPizza = new ListerPizzasOptionMenu();
-		createurPizza = new NouvellePizzaOptionMenu();
-		supprimeurPizza = new SupprimerPizzaOptionMenu();
-		modifieurPizza = new ModifierPizzaOptionMenu();
+		listeurPizza = new ListerPizzasOptionMenu(stockage);
+		createurPizza = new NouvellePizzaOptionMenu(stockage);
+		supprimeurPizza = new SupprimerPizzaOptionMenu(stockage);
+		modifieurPizza = new ModifierPizzaOptionMenu(stockage);
 		
 	}
 

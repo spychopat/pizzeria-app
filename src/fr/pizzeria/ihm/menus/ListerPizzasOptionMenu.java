@@ -1,26 +1,28 @@
 package fr.pizzeria.ihm.menus;
 
+import fr.pizzeria.dao.Stockage;
 import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.model.Pizza;
 
 /**
- * Liste les pizzas sauvegardés dans le systeme
+ * Liste les pizzas sauvegardï¿½s dans le systeme
  * sur la sortie console
  * @author Pierre Brengues
  *
  */
 public class ListerPizzasOptionMenu extends OptionMenu {
 
+	Stockage stockage;
 	
-	
-	public ListerPizzasOptionMenu() {
+	public ListerPizzasOptionMenu(Stockage stockage) {
 		super("Lister les pizzas");
+		this.stockage = stockage;
 	}
 
 	@Override
 	public boolean execute() {
-		for (Pizza pizza: Pizza.stockage.findAllPizzas()) {
-		    System.out.println(pizza.getCodePizza() + " - " + pizza.getNomPizza() +" - "+ pizza.getPrix() +"€");
+		for (Pizza pizza: stockage.findAllPizzas()) {
+		    System.out.println(pizza.getCodePizza() + " - " + pizza.getNomPizza() +" - "+ pizza.getPrix() +"â‚¬");
 		}
 		return true;
 	}
