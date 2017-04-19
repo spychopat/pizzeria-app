@@ -18,5 +18,24 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                 </plugin>
             </plugins>
         </pluginManagement>
+     
+    <finalName>Pizzeria App</finalName>
+
     </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    
+    <properties>
+        <!-- ici se trouveront les propriétés à ajouter -->
+    </properties>
+    
 </project>
+

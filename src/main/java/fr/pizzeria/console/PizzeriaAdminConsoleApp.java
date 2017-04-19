@@ -1,16 +1,8 @@
 package fr.pizzeria.console;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.dao.DaoFichierFactory;
-import fr.pizzeria.dao.DaoMemoireFactory;
-import fr.pizzeria.dao.PizzaDaoImplFichier;
-import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.ihm.Menu;
-import fr.pizzeria.model.Pizza;
-
 
 public class PizzeriaAdminConsoleApp {
 
