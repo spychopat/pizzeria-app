@@ -23,7 +23,7 @@ public class PizzaDaoImplMemoire implements Stockage{
 	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException {
 		boolean result = pizzas.add(pizza);
 		if(!result)
-			throw new SavePizzaException("Code pizza dï¿½jï¿½ existant.");
+			throw new SavePizzaException("Code pizza déjà existant.");
 		return result;
 	}
 

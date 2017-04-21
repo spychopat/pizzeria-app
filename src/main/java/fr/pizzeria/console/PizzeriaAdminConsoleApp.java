@@ -3,6 +3,7 @@ package fr.pizzeria.console;
 import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.dao.DaoFichierFactory;
 import fr.pizzeria.ihm.Menu;
+import com.github.lalyos.jfiglet.FigletFont;
 
 public class PizzeriaAdminConsoleApp {
 
@@ -25,8 +26,7 @@ public class PizzeriaAdminConsoleApp {
 //		memFact.getPizzaDao().saveNewPizza(new Pizza("GIG","Gigapizz",99.99));
 	
 		
-		
-	
+		System.out.println(FigletFont.convertOneLine("UBER-PIZZA"));
 		
 		
 

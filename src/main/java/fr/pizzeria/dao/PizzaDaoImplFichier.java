@@ -1,6 +1,7 @@
 package fr.pizzeria.dao;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -54,20 +55,30 @@ public class PizzaDaoImplFichier implements Stockage {
 
 	@Override
 	public boolean saveNewPizza(Pizza pizza) throws SavePizzaException {
-		// TODO Auto-generated method stub
-		return false;
+		try{
+		    PrintWriter writer = new PrintWriter(datapath+"/"+pizza.getCodePizza()+".txt", "UTF-8");
+		    writer.println(pizza.getNomPizza()+";"+pizza.getPrix()+";VIANDE");
+		    writer.close();
+		} catch (IOException e) {
+		   return false;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException {
-		// TODO Auto-generated method stub
-		return false;
+		deletePizza(codePizza);
+		return saveNewPizza(pizza);
 	}
 
 	@Override
 	public boolean deletePizza(String codePizza) throws DeletePizzaException {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Files.delete(Paths.get(datapath+"/"+codePizza+".txt"));
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 	}
 
 	

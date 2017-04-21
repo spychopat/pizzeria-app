@@ -116,10 +116,12 @@ public class Pizza {
 	}
 
 
-
+	public String toString(){
+		return display();
+	}
 
 	public String display() {
-		return codePizza +" - "+nomPizza+" - "+prix+"â‚¬";
+		return codePizza +" - "+nomPizza+" - "+prix+"€";
 	}
 	
 	
