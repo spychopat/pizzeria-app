@@ -2,7 +2,11 @@ package fr.pizzeria.console;
 
 import fr.pizzeria.dao.DaoFactory;
 import fr.pizzeria.dao.DaoFichierFactory;
+import fr.pizzeria.dao.Stockage;
 import fr.pizzeria.ihm.Menu;
+
+import java.util.ResourceBundle;
+
 import com.github.lalyos.jfiglet.FigletFont;
 
 public class PizzeriaAdminConsoleApp {
@@ -10,6 +14,24 @@ public class PizzeriaAdminConsoleApp {
 
 	
 	public static void main(String[] args) {
+		
+		
+		
+		ResourceBundle bundle = ResourceBundle.getBundle("application");
+		System.out.println(bundle.getString("super.mega.test"));
+		System.out.println(bundle.getString("super.giga.test"));
+		String value = bundle.getString("dao.impl");
+		System.out.println(value);
+		
+		//String uneClasse = "fr.pizzeria.dao.memoire.PizzaDaoImplMemoire";
+		try {
+			Class<?> maClasse = Class.forName(value);
+			Stockage unObjet = (Stockage) maClasse.newInstance();
+			unObjet.findAllPizzas().forEach(p -> System.out.println(p.toString()));
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 		//DaoFactory memFact = new DaoMemoireFactory();

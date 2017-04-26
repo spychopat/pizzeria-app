@@ -120,7 +120,7 @@ public class Pizza {
 	}
 
 	public String display() {
-		return codePizza +" - "+nomPizza+" - "+prix+"�";
+		return codePizza +" - "+nomPizza+" - "+prix+"€";
 	}
 	
 	

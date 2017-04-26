@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import fr.pizzeria.dao.PizzaDaoImplFichier;
 import fr.pizzeria.dao.PizzaDaoImplMemoire;
 import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.jdbc.JDBC;
 import fr.pizzeria.model.Pizza;
 
 public class ClientRiche extends JFrame {
@@ -30,7 +31,7 @@ public class ClientRiche extends JFrame {
 	
 	JTextArea area = new JTextArea();
 
-	// Fenêtre secondaire permettant d'ajouter une pizza
+	// Fenï¿½tre secondaire permettant d'ajouter une pizza
 	AjouterPizzaFrame pizzaFrame = new AjouterPizzaFrame();
 	UpdatePizzaFrame updatePizzaFrame = new UpdatePizzaFrame();
 	DeletePizzaFrame deletePizzaFrame = new DeletePizzaFrame();
@@ -49,13 +50,15 @@ public class ClientRiche extends JFrame {
 	}
 
 	private void initComposant() {
-		// On définit la police d'écriture à utiliser
+		// On dï¿½finit la police d'ï¿½criture ï¿½ utiliser
 		Font police = new Font("Arial", Font.BOLD, 16);
 		
-		// On parcourt le tableau initialisé
-		// afin de créer nos boutons
+		// On parcourt le tableau initialisï¿½
+		// afin de crï¿½er nos boutons
 		//Stockage dao = new PizzaDaoImplMemoire();
-		Stockage dao = new PizzaDaoImplFichier("src/main/resources/data");
+		//Stockage dao = new PizzaDaoImplFichier("src/main/resources/data");
+		Stockage dao = new JDBC();
+		
 		pizzaFrame.setDao(dao);
 		updatePizzaFrame.setDao(dao);
 		deletePizzaFrame.setDao(dao);
