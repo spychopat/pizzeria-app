@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
 
+import javax.persistence.Persistence;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -14,6 +15,7 @@ import fr.pizzeria.dao.PizzaDaoImplFichier;
 import fr.pizzeria.dao.PizzaDaoImplMemoire;
 import fr.pizzeria.dao.Stockage;
 import fr.pizzeria.dao.jdbc.JDBC;
+import fr.pizzeria.dao.jpa.JPA;
 import fr.pizzeria.model.Pizza;
 
 public class ClientRiche extends JFrame {
@@ -53,11 +55,34 @@ public class ClientRiche extends JFrame {
 		// On d�finit la police d'�criture � utiliser
 		Font police = new Font("Arial", Font.BOLD, 16);
 		
-		// On parcourt le tableau initialis�
-		// afin de cr�er nos boutons
+		
+		/*
+		 *********************************************************************************************************************
+		 *********************************************************************************************************************
+		 *************************************  STOCKAGE *********************************************************************
+		 *********************************************************************************************************************
+		 *********************************************************************************************************************
+		 */
+		
+		
 		//Stockage dao = new PizzaDaoImplMemoire();
 		//Stockage dao = new PizzaDaoImplFichier("src/main/resources/data");
-		Stockage dao = new JDBC();
+		//Stockage dao = new JDBC();
+		Stockage dao = new JPA(Persistence.createEntityManagerFactory("pizzeria-unit"));
+		
+		
+		
+		/*
+		 *********************************************************************************************************************
+		 *********************************************************************************************************************
+		 *********************************************************************************************************************
+		 *********************************************************************************************************************
+		 *********************************************************************************************************************
+		 */
+		
+		
+		
+		
 		
 		pizzaFrame.setDao(dao);
 		updatePizzaFrame.setDao(dao);

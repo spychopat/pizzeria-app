@@ -11,6 +11,7 @@
 		<module>pizzeria-swing</module>
     <module>pizzeria-dao-jdbc</module>
     <module>pizzeria-console</module>
+    <module>pizzeria-dao-jpa</module>
 	</modules>
 
 	<build>

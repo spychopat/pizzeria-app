@@ -8,11 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
 public class UpdatePizzaFrame extends JFrame {
 
-	// Un bouton par élément à afficher
+	// Un bouton par ï¿½lï¿½ment ï¿½ afficher
 	JLabel texteCodeAncien = new JLabel("Ancien Code");
 	JLabel texteCode = new JLabel("Code");
 	JLabel texteNom = new JLabel("Nom");
@@ -39,10 +40,10 @@ public class UpdatePizzaFrame extends JFrame {
 	}
 
 	private void initComposant() {
-		// On définit la police d'écriture à utiliser
+		// On dï¿½finit la police d'ï¿½criture ï¿½ utiliser
 		Font police = new Font("Arial", Font.BOLD, 16);
 		
-		// On aligne les informations à droite dans le JLabel
+		// On aligne les informations ï¿½ droite dans le JLabel
 		this.getContentPane().setLayout(null);
 		this.getContentPane().add(texteCode);
 		this.getContentPane().add(texteCodeAncien);
@@ -54,8 +55,8 @@ public class UpdatePizzaFrame extends JFrame {
 		this.getContentPane().add(prix);
 		this.getContentPane().add(valider);
 
-		// On parcourt le tableau initialisé
-		// afin de créer nos boutons
+		// On parcourt le tableau initialisï¿½
+		// afin de crï¿½er nos boutons
 
 		int posY = 50;
 
@@ -106,8 +107,8 @@ public class UpdatePizzaFrame extends JFrame {
 			this.nom.setText("");
 			this.prix.setText("");
 			this.setVisible(false);
-		} catch (Exception e){
-			System.out.println("Erreur lors de la crétion de la pizza (saisie incorrecte ?)");
+		} catch (UpdatePizzaException e){
+			System.out.println("Erreur lors de la mise Ã  jour de la pizza (saisie incorrecte ?)");
 		}
 	}
 

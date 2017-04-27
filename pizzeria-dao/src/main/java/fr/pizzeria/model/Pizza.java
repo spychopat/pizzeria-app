@@ -1,18 +1,46 @@
 package fr.pizzeria.model;
 
-import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import fr.pizzeria.dao.Stockage;
-import fr.pizzeria.exception.SavePizzaException;
 
-
-
+@Entity
+@Table(name="pizza")
 public class Pizza {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Enumerated()
+    @Transient
+	private CategoriePizza catPizz;
+	
+	@Column(name = "ID_PIZZA")
 	private String codePizza;
+	
+	@Column(name = "nom")
 	private String nomPizza;
+	
+	@Column(name = "prix")
 	private Double prix;
+	
+	
+	public Pizza(){
+
+		this.catPizz = CategoriePizza.VIANDE;
+		this.codePizza = "NOP";
+		this.nomPizza = "DEFAULT-NAME";
+		this.prix = 0.0;
+	}
+	
 	
 	// pizzas stock�s de l'application
 	//private static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
@@ -23,6 +51,7 @@ public class Pizza {
 		
 		
 		//this.id = trouverIDlibre();
+		this.catPizz = CategoriePizza.VIANDE;
 		this.codePizza = codePizza;
 		this.nomPizza = nomPizza;
 		this.prix = prix;
@@ -45,6 +74,7 @@ public class Pizza {
 
 	public Pizza(String codePizza, String nomPizza, Double prix, CategoriePizza categorie) {
 		//this.id = trouverIDlibre();
+		this.catPizz = categorie;
 		this.codePizza = codePizza;
 		this.nomPizza = nomPizza;
 		this.prix = prix;
@@ -80,6 +110,20 @@ public class Pizza {
 	
 	
 	
+	public CategoriePizza getCatPizz() {
+		return catPizz;
+	}
+
+
+
+
+	public void setCatPizz(CategoriePizza catPizz) {
+		this.catPizz = catPizz;
+	}
+
+
+
+
 	public String getCodePizza() {
 		return codePizza;
 	}
