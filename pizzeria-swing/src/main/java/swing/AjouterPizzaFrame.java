@@ -7,12 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
 public class AjouterPizzaFrame extends JFrame {
 
-	// Un bouton par élément à afficher
+	// Un bouton par ï¿½lï¿½ment ï¿½ afficher
 	JLabel texteCode = new JLabel("Code");
 	JLabel texteNom = new JLabel("Nom");
 	JLabel textePrix = new JLabel("Prix");
@@ -21,7 +21,7 @@ public class AjouterPizzaFrame extends JFrame {
 	JTextField prix = new JTextField();
 	JButton valider = new JButton("Valider");
 	
-	Stockage dao;
+	IPizzaDao dao;
 
 	public AjouterPizzaFrame() {
 		
@@ -37,10 +37,10 @@ public class AjouterPizzaFrame extends JFrame {
 	}
 
 	private void initComposant() {
-		// On définit la police d'écriture à utiliser
+		// On dï¿½finit la police d'ï¿½criture ï¿½ utiliser
 		Font police = new Font("Arial", Font.BOLD, 16);
 		
-		// On aligne les informations à droite dans le JLabel
+		// On aligne les informations ï¿½ droite dans le JLabel
 		this.getContentPane().setLayout(null);
 		this.getContentPane().add(texteCode);
 		this.getContentPane().add(texteNom);
@@ -50,8 +50,8 @@ public class AjouterPizzaFrame extends JFrame {
 		this.getContentPane().add(prix);
 		this.getContentPane().add(valider);
 
-		// On parcourt le tableau initialisé
-		// afin de créer nos boutons
+		// On parcourt le tableau initialisï¿½
+		// afin de crï¿½er nos boutons
 
 		texteCode.setFont(police);
 		texteCode.setBounds(70, 50, 50, 40);
@@ -77,7 +77,7 @@ public class AjouterPizzaFrame extends JFrame {
 		
 	}
 
-	private void valider(Stockage dao2) {
+	private void valider(IPizzaDao dao2) {
 		try {
 			dao2.saveNewPizza(new Pizza(code.getText(), nom.getText(), Double.valueOf(prix.getText())));
 			this.code.setText("");
@@ -85,15 +85,15 @@ public class AjouterPizzaFrame extends JFrame {
 			this.prix.setText("");
 			this.setVisible(false);
 		} catch (Exception e){
-			System.out.println("Erreur lors de la crétion de la pizza (saisie incorrecte ?)");
+			System.out.println("Erreur lors de la crÃ©tion de la pizza (saisie incorrecte ?)");
 		}
 	}
 
-	public Stockage getDao() {
+	public IPizzaDao getDao() {
 		return dao;
 	}
 
-	public void setDao(Stockage dao) {
+	public void setDao(IPizzaDao dao) {
 		this.dao = dao;
 	}
 

@@ -8,7 +8,7 @@ import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoImplMemoire implements Stockage{
+public class PizzaDaoImplMemoire implements IPizzaDao{
 
 	
 	private static ArrayList<Pizza> pizzas = new ArrayList<Pizza>();

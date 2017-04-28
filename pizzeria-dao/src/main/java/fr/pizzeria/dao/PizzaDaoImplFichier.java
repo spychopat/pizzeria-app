@@ -14,7 +14,7 @@ import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoImplFichier implements Stockage {
+public class PizzaDaoImplFichier implements IPizzaDao {
 
 	private String datapath;
 	

@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
@@ -16,7 +16,7 @@ import fr.pizzeria.model.Pizza;
 
 
 
-public class JPA implements Stockage {
+public class PizzaJPA implements IPizzaDao {
 
 	
 	
@@ -25,7 +25,7 @@ public class JPA implements Stockage {
 	
 	
 	
-	public JPA(EntityManagerFactory entManFact) {
+	public PizzaJPA(EntityManagerFactory entManFact) {
 		super();
 		this.entManFact = entManFact;
 	}
@@ -96,16 +96,13 @@ public class JPA implements Stockage {
 		
 		EntityManager entMan = entManFact.createEntityManager();
 		EntityTransaction transaction = entMan.getTransaction();
-		Query query = entMan.createQuery("select p from Pizza p");
+		Query query = entMan.createQuery("select p from Pizza p where p.codePizza = '"+codePizza+"'");
 		
 		transaction.begin();
-		for(Object piz : query.getResultList()){
-			if(((Pizza)piz).getCodePizza().equals(codePizza)){
-				entMan.remove(piz);
-			}
-		}
+		entMan.remove(query.getSingleResult());
 		transaction.commit();
 		
+		entMan.close();
 		return true;
 	}
 

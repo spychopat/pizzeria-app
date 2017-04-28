@@ -3,7 +3,7 @@ package fr.pizzeria.dao;
 public class DaoFichierFactory implements DaoFactory {
 
 	
-	private Stockage pizzaDao = new PizzaDaoImplFichier("src/main/resources/data");
+	private IPizzaDao pizzaDao = new PizzaDaoImplFichier("src/main/resources/data");
 	
 	/*
 	public DaoMemoireFactory(Stockage pizzaDao) {
@@ -13,7 +13,7 @@ public class DaoFichierFactory implements DaoFactory {
 */
 
 	@Override
-	public Stockage getPizzaDao() {
+	public IPizzaDao getPizzaDao() {
 		return pizzaDao;
 	}
 

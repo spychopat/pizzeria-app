@@ -1,6 +1,6 @@
 package fr.pizzeria.ihm.menus;
 
-import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.model.Pizza;
 
@@ -12,9 +12,9 @@ import fr.pizzeria.model.Pizza;
  */
 public class ListerPizzasOptionMenu extends OptionMenu {
 
-	Stockage stockage;
+	IPizzaDao stockage;
 	
-	public ListerPizzasOptionMenu(Stockage stockage) {
+	public ListerPizzasOptionMenu(IPizzaDao stockage) {
 		super("Lister les pizzas");
 		this.stockage = stockage;
 	}

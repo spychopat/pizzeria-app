@@ -2,16 +2,16 @@ package fr.pizzeria.ihm.menus;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.*;
 import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.model.Pizza;
 
 public class SupprimerPizzaOptionMenu extends OptionMenu {
 
-	private Stockage stockage;
+	private IPizzaDao stockage;
 
-	public SupprimerPizzaOptionMenu(Stockage stockage) {
+	public SupprimerPizzaOptionMenu(IPizzaDao stockage) {
 		super("Supprimer une pizza");
 		this.stockage = stockage;
 	}

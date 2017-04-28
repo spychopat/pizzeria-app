@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import fr.pizzeria.dao.Stockage;
 
 @Entity
 @Table(name="pizza")
@@ -17,6 +16,7 @@ public class Pizza {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int id;
 	
 	@Enumerated()
@@ -32,6 +32,8 @@ public class Pizza {
 	@Column(name = "prix")
 	private Double prix;
 	
+	@Column(name = "url_image")
+	private String urlImage;
 	
 	public Pizza(){
 
@@ -103,11 +105,11 @@ public class Pizza {
 
 
 
-
+/*
 	public static int getNombrePizza(Stockage stockage){
 		return stockage.findAllPizzas().size();
 	}
-	
+	*/
 	
 	
 	public CategoriePizza getCatPizz() {

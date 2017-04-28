@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
@@ -24,7 +24,7 @@ public class UpdatePizzaFrame extends JFrame {
 	JTextField prix = new JTextField();
 	JButton valider = new JButton("Valider");
 	
-	Stockage dao;
+	IPizzaDao dao;
 
 	public UpdatePizzaFrame() {
 		
@@ -99,7 +99,7 @@ public class UpdatePizzaFrame extends JFrame {
 		
 	}
 
-	private void valider(Stockage dao2) {
+	private void valider(IPizzaDao dao2) {
 		try {
 			dao2.updatePizza(codeAncien.getText(),new Pizza(code.getText(), nom.getText(), Double.valueOf(prix.getText())));
 			this.codeAncien.setText("");
@@ -112,11 +112,11 @@ public class UpdatePizzaFrame extends JFrame {
 		}
 	}
 
-	public Stockage getDao() {
+	public IPizzaDao getDao() {
 		return dao;
 	}
 
-	public void setDao(Stockage dao) {
+	public void setDao(IPizzaDao dao) {
 		this.dao = dao;
 	}
 

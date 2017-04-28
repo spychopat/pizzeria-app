@@ -2,7 +2,7 @@ package fr.pizzeria.ihm.menus;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.ihm.OptionMenu;
 import fr.pizzeria.model.Pizza;
@@ -11,8 +11,8 @@ import fr.pizzeria.model.Pizza;
  * elle est directement ajout�e � la liste des pizzas
  */
 public class NouvellePizzaOptionMenu extends OptionMenu {
-private Stockage stockage;
-	public NouvellePizzaOptionMenu( Stockage stockage) {
+private IPizzaDao stockage;
+	public NouvellePizzaOptionMenu( IPizzaDao stockage) {
 		super("Ajouter une nouvelle pizza");
 		this.stockage = stockage;
 	} 

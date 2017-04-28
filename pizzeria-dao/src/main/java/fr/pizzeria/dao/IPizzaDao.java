@@ -5,7 +5,7 @@ import java.util.List;
 import fr.pizzeria.exception.*;
 import fr.pizzeria.model.Pizza;
 
-public interface Stockage {
+public interface IPizzaDao {
 		
 	List<Pizza> findAllPizzas();
 	boolean saveNewPizza(Pizza pizza) throws SavePizzaException;

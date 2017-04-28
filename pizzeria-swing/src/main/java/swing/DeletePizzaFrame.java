@@ -7,17 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import fr.pizzeria.dao.Stockage;
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.model.Pizza;
 
 public class DeletePizzaFrame extends JFrame {
 
-	// Un bouton par élément à afficher
+	// Un bouton par ï¿½lï¿½ment ï¿½ afficher
 	JLabel texteCodeAncien = new JLabel("Ancien Code");
 	JTextField codeAncien = new JTextField();
 	JButton valider = new JButton("Valider");
 	
-	Stockage dao;
+	IPizzaDao dao;
 
 	public DeletePizzaFrame() {
 		
@@ -33,17 +33,17 @@ public class DeletePizzaFrame extends JFrame {
 	}
 
 	private void initComposant() {
-		// On définit la police d'écriture à utiliser
+		// On dï¿½finit la police d'ï¿½criture ï¿½ utiliser
 		Font police = new Font("Arial", Font.BOLD, 16);
 		
-		// On aligne les informations à droite dans le JLabel
+		// On aligne les informations ï¿½ droite dans le JLabel
 		this.getContentPane().setLayout(null);
 		this.getContentPane().add(texteCodeAncien);
 		this.getContentPane().add(codeAncien);
 		this.getContentPane().add(valider);
 
-		// On parcourt le tableau initialisé
-		// afin de créer nos boutons
+		// On parcourt le tableau initialisï¿½
+		// afin de crï¿½er nos boutons
 
 		int posY = 50;
 
@@ -61,21 +61,21 @@ public class DeletePizzaFrame extends JFrame {
 		
 	}
 
-	private void valider(Stockage dao2) {
+	private void valider(IPizzaDao dao2) {
 		try {
 			dao2.deletePizza(codeAncien.getText());
 			this.codeAncien.setText("");
 			this.setVisible(false);
 		} catch (Exception e){
-			System.out.println("Erreur lors de la crétion de la pizza (saisie incorrecte ?)");
+			System.out.println("Erreur lors de la crï¿½tion de la pizza (saisie incorrecte ?)");
 		}
 	}
 
-	public Stockage getDao() {
+	public IPizzaDao getDao() {
 		return dao;
 	}
 
-	public void setDao(Stockage dao) {
+	public void setDao(IPizzaDao dao) {
 		this.dao = dao;
 	}
 

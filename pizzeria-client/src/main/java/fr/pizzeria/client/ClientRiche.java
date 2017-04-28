@@ -1,4 +1,4 @@
-package swing;
+package fr.pizzeria.client;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,12 +11,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import fr.pizzeria.dao.PizzaDaoImplFichier;
-import fr.pizzeria.dao.PizzaDaoImplMemoire;
+import fr.pizzeria.dao.IClientDao;
 import fr.pizzeria.dao.IPizzaDao;
-import fr.pizzeria.dao.jdbc.JDBC;
-import fr.pizzeria.dao.jpa.PizzaJPA;
-import fr.pizzeria.model.Pizza;
+import fr.pizzeria.dao.jpa.ClientJPA;
+
 
 public class ClientRiche extends JFrame {
 
@@ -25,22 +23,19 @@ public class ClientRiche extends JFrame {
 	private JPanel container = new JPanel();
 
 	// Liste des boutons du menu
-	JButton listerPizzas = new JButton("Lister les pizzas");
-	JButton ajouterPizza = new JButton("Ajouter une pizza");
-	JButton modifierPizza = new JButton("Modifier une pizza");
-	JButton supprimerPizza = new JButton("Supprimer une pizza");
+	JButton sinscrire = new JButton("S'inscrire");
+	JButton seConnecter = new JButton("Se Connecter");
 	JButton quitter = new JButton("Quitter");
 	
-	JTextArea area = new JTextArea();
+	//JTextArea area = new JTextArea();
 
 	// Fen�tre secondaire permettant d'ajouter une pizza
-	AjouterPizzaFrame pizzaFrame = new AjouterPizzaFrame();
-	UpdatePizzaFrame updatePizzaFrame = new UpdatePizzaFrame();
-	DeletePizzaFrame deletePizzaFrame = new DeletePizzaFrame();
+	SinscrireFrame sinscrireFrame = new SinscrireFrame();
+	SeConnecterFrame seConnecterFrame = new SeConnecterFrame();
 
 	public ClientRiche() {
-		this.setSize(310, 540);
-		this.setTitle("Pizza manager");
+		this.setSize(310, 200);
+		this.setTitle("Pizza Client");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -55,6 +50,7 @@ public class ClientRiche extends JFrame {
 		// On d�finit la police d'�criture � utiliser
 		Font police = new Font("Arial", Font.BOLD, 16);
 		
+
 		
 		/*
 		 *********************************************************************************************************************
@@ -68,7 +64,7 @@ public class ClientRiche extends JFrame {
 		//Stockage dao = new PizzaDaoImplMemoire();
 		//Stockage dao = new PizzaDaoImplFichier("src/main/resources/data");
 		//Stockage dao = new JDBC();
-		IPizzaDao dao = new PizzaJPA(Persistence.createEntityManagerFactory("pizzeria-unit"));
+		IClientDao dao = new ClientJPA(Persistence.createEntityManagerFactory("pizzeria-unit"));
 		
 		
 		
@@ -79,71 +75,46 @@ public class ClientRiche extends JFrame {
 		 *********************************************************************************************************************
 		 *********************************************************************************************************************
 		 */
+	
 		
 		
 		
-		
-		
-		pizzaFrame.setDao(dao);
-		updatePizzaFrame.setDao(dao);
-		deletePizzaFrame.setDao(dao);
 		
 		Dimension dimButton = new Dimension(250, 40);
 
-		listerPizzas.addActionListener(e -> listerPizzas(dao));
-		listerPizzas.setPreferredSize(dimButton);
-		listerPizzas.setFont(police);
-		listerPizzas.setMnemonic('l');
+		sinscrire.addActionListener(e -> sinscrire(dao));
+		sinscrire.setPreferredSize(dimButton);
+		sinscrire.setFont(police);
+		sinscrire.setMnemonic('l');
 		
-		ajouterPizza.addActionListener(e -> ajouterPizzas(dao));
-		ajouterPizza.setPreferredSize(dimButton);
-		ajouterPizza.setFont(police);
+		seConnecter.addActionListener(e -> seConnecter(dao));
+		seConnecter.setPreferredSize(dimButton);
+		seConnecter.setFont(police);
 		
-		modifierPizza.addActionListener(e -> modifierPizza(dao));
-		modifierPizza.setPreferredSize(dimButton);
-		modifierPizza.setFont(police);
-		
-		supprimerPizza.addActionListener(e -> supprimerPizza(dao));
-		supprimerPizza.setPreferredSize(dimButton);
-		supprimerPizza.setFont(police);
 		
 		quitter.addActionListener(e -> System.exit(0));
 		quitter.setPreferredSize(dimButton);
 		quitter.setFont(police);
 		
-		area.setPreferredSize(new Dimension(250, 250));
+		//area.setPreferredSize(new Dimension(250, 250));
 
-		container.add(listerPizzas);
-		container.add(ajouterPizza);
-		container.add(modifierPizza);
-		container.add(supprimerPizza);
+		container.add(sinscrire);
+		container.add(seConnecter);
 		container.add(quitter);
-		container.add(area);
+		//container.add(area);
 		
 	}
 
-	private void supprimerPizza(IPizzaDao dao) {
-		deletePizzaFrame.setDao(dao);
-		deletePizzaFrame.setVisible(true);
+
+
+	private void seConnecter(IClientDao dao) {
+		// TODO
+		seConnecterFrame.setVisible(true);
 	}
 
-	private void modifierPizza(IPizzaDao dao) {
-
-		updatePizzaFrame.setDao(dao);
-		updatePizzaFrame.setVisible(true);
-	}
-
-	private void ajouterPizzas(IPizzaDao dao) {
-		pizzaFrame.setDao(dao);
-		pizzaFrame.setVisible(true);
-	}
-
-	private void listerPizzas(IPizzaDao dao) {
-		area.setText("");
-		List<Pizza> pizzas = dao.findAllPizzas();
-		for (Pizza pizza: pizzas){
-			area.append(pizza.toString()+"\n");
-		}
+	private void sinscrire(IClientDao dao) {
+		sinscrireFrame.setDao(dao);
+		sinscrireFrame.setVisible(true);
 	}
 
 }
